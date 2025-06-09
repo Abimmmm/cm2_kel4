@@ -44,6 +44,9 @@ public class Main {
                         sc.nextLine(); 
                         System.out.println(">> Transaksi Berhasil Dicatat");
                     }
+
+                    Transaksi t = new Transaksi(dilayani.getPlatNomor(), bbm, liter, harga);
+
                     break;
                 case 5:
                     riwayat.tampilkanTransaksi();
