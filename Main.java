@@ -23,13 +23,27 @@ public class Main {
                     
                     break;
                 case 2:
-                    
+                    antrian.tampilkanAntrian();
                     break;
                 case 3:
                     
                     break;
                 case 4:
-                   
+                   if (antrian.isEmpty()) {
+                        System.out.println("Antrian kosong.");
+                    } else {
+                        Kendaraan dilayani = antrian.dequeue();
+                        System.out.println("Petugas melayani" + dilayani.getPlatNomor());
+
+                        System.out.print("Masukkan jenis BBM: ");
+                        String bbm = sc.nextLine();
+                        System.out.print("Masukkan jumlah liter: ");
+                        double liter = sc.nextDouble();
+                        System.out.print("Masukkan harga per liter: ");
+                        double harga = sc.nextDouble();
+                        sc.nextLine(); 
+                        System.out.println(">> Transaksi Berhasil Dicatat");
+                    }
                     break;
                 case 5:
                     riwayat.tampilkanTransaksi();
