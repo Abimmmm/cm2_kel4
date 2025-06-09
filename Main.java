@@ -32,21 +32,22 @@ public class Main {
                    if (antrian.isEmpty()) {
                         System.out.println("Antrian kosong.");
                     } else {
+                        if (antrian.isEmpty()) {
+                        System.out.println("Antrian kosong.");
+                    } else {
                         Kendaraan dilayani = antrian.dequeue();
-                        System.out.println("Petugas melayani" + dilayani.getPlatNomor());
-
+                        System.out.println("Petugas melayani " + dilayani.platNomor);
                         System.out.print("Masukkan jenis BBM: ");
                         String bbm = sc.nextLine();
                         System.out.print("Masukkan jumlah liter: ");
                         double liter = sc.nextDouble();
                         System.out.print("Masukkan harga per liter: ");
                         double harga = sc.nextDouble();
-                        sc.nextLine(); 
-                        System.out.println(">> Transaksi Berhasil Dicatat");
+                        sc.nextLine();
+                        Transaksi t = new Transaksi(dilayani.platNomor, bbm, liter, harga);
+                        transaksiQueue.enqueue(t);
+                        System.out.println(">> Transaksi Berhasil Dicatat");       
                     }
-
-                    Transaksi t = new Transaksi(dilayani.getPlatNomor(), bbm, liter, harga);
-
                     break;
                 case 5:
                     riwayat.tampilkanTransaksi();
