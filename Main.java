@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Punya Nikk.NodeKendaraan;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -20,13 +22,27 @@ public class Main {
 
             switch (pilih) {
                 case 1:
-                    
+                    System.out.print("Masukkan plat nomor: ");
+                    String plat = sc.nextLine();
+                    System.out.print("Masukkan jenis kendaraan: ");
+                    String jenis = sc.nextLine();
+                    System.out.print("Masukkan merk kendaraan: ");
+                    String merk = sc.nextLine();
+                    Kendaraan k = new Kendaraan(plat, jenis, merk);
+                    antrian.enqueue(k);
+                    System.out.println(">> Kendaraan berhasil ditambahkan ke antrian.");
                     break;
                 case 2:
                     antrian.tampilkanAntrian();
                     break;
                 case 3:
-                    
+                    int jumlah = 0;
+                    Node temp = antrian.head;
+                    while (temp != null) {
+                        jumlah++;
+                        temp = temp.next;
+                    }
+                    System.out.println(">> Jumlah kendaraan dalam antrian: " + jumlah);
                     break;
                 case 4:
                    if (antrian.isEmpty()) {
