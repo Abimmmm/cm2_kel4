@@ -1,19 +1,16 @@
 public class Transaksi {
     Kendaraan kendaraan;
-    String jenisBBM;
-    double liter;
-    double hargaPerLiter;
-    double totalBayar;
+    BBM bbm;
+    double liter, totalBayar;
 
-    public Transaksi(Kendaraan kendaraan, String jenisBBM, double liter, double hargaPerLiter) {
+    Transaksi(Kendaraan kendaraan, BBM bbm, double liter) {
         this.kendaraan = kendaraan;
-        this.jenisBBM = jenisBBM;
+        this.bbm = bbm;
         this.liter = liter;
-        this.hargaPerLiter = hargaPerLiter;
-        this.totalBayar = liter * hargaPerLiter;
+        
     }
 
     public void tampil() {
-        System.out.println(kendaraan.platNomor + ": " + totalBayar );
+        System.out.println(kendaraan.platNomor + ": " + bbm.hargaPerLiter * liter );
     }
 }

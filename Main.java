@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         AntrianDoubleLinkedList antrian = new AntrianDoubleLinkedList();
-        QueueTransaksi riwayat = new QueueTransaksi(100);
+        QueueTransaksi riwayat = new QueueTransaksi();
 
         int pilih;
         do {
@@ -16,7 +16,8 @@ public class Main {
             System.out.println("5. Lihat Riwayat Transaksi");
             System.out.println("0. Keluar");
             System.out.print("Pilih menu: ");
-            pilih = sc.nextInt(); sc.nextLine();
+            pilih = sc.nextInt(); 
+            sc.nextLine();
 
             switch (pilih) {
                 case 1:
@@ -27,7 +28,7 @@ public class Main {
                     System.out.print("Masukkan merk kendaraan: ");
                     String merk = sc.nextLine();
                     Kendaraan k = new Kendaraan(plat, jenis, merk);
-                    antrian.enqueue(k);
+                    antrian.tambahAntrian(k);
                     System.out.println(">> Kendaraan berhasil ditambahkan ke antrian.");
                     break;
                 case 2:
@@ -43,31 +44,30 @@ public class Main {
                     System.out.println(">> Jumlah kendaraan dalam antrian: " + jumlah);
                     break;
                 case 4:
-                   if (antrian.isEmpty()) {
-                        System.out.println("Antrian kosong.");
+                    if (antrian.isEmpty()) {
+                            System.out.println("Antrian kosong.");
                     } else {
-                        if (antrian.isEmpty()) {
-                        System.out.println("Antrian kosong.");
-                    } else {
-                        Kendaraan dilayani = antrian.dequeue();
-                        System.out.println("Petugas melayani " + dilayani.platNomor);
-                        System.out.print("Masukkan jenis BBM: ");
+                        Kendaraan dilayani = antrian.head.data;
+                        System.out.println("Petugas Melayani Kendaraan " + dilayani.platNomor);
+                        System.out.print("Jenis BBM: ");
                         String bbm = sc.nextLine();
-                        System.out.print("Masukkan jumlah liter: ");
+                        System.out.print("Jumlah Liter: ");
                         double liter = sc.nextDouble();
-                        System.out.print("Masukkan harga per liter: ");
-                        double harga = sc.nextDouble();
+                        System.out.print("Harga per Liter: ");
+                        double harga = sc.nextDouble(); 
                         sc.nextLine();
-                        Transaksi t = new Transaksi(dilayani.platNomor, bbm, liter, harga);
-                        transaksiQueue.enqueue(t);
-                        System.out.println(">> Transaksi Berhasil Dicatat");       
-                    }
+                        BBM b = new BBM(bbm, harga);
+                        Transaksi tr = new Transaksi(dilayani, b, liter);
+                        riwayat.enqueue(tr);
+                        antrian.layaniKendaraan();
+                        System.out.println("Transaksi berhasil dicatat.");
+                    }    
                     break;
                 case 5:
                     riwayat.tampilkanTransaksi();
                     break;
                 case 0:
-                    System.out.println("Terima kasih!");
+                    System.out.println("Program Selesai Terima kasih!");
                     break;
                 default:
                     System.out.println("Pilihan tidak valid.");

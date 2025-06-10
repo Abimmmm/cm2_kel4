@@ -1,28 +1,17 @@
 public class AntrianDoubleLinkedList {
     Node head, tail;
 
+    public AntrianDoubleLinkedList(){
+        head = null;
+        tail = null;
+    }
     public boolean isEmpty(){
         return head == null;
     }
 
-    public void tampilkanAntrian(){
-    if (isEmpty()) {
-        System.out.println("Antrian kosong.");
-        return;
-    }
-
-    NodeKendaraan temp = head;
-    System.out.println("-- Daftar Kendaraan dalam Antrian");
-    while (temp != null) {
-        temp.kendaraan.tampilkanInformasi();
-        System.out.println("-----------------------------");
-        temp = temp.next;
-    }
-}
-
-   public void enqueue(Kendaraan k){
-        NodeKendaraan baru = new NodeKendaraan(k);
-        if (head == null) {
+    public void tambahAntrian(Kendaraan kendaraan) {
+        Node baru = new Node(kendaraan);
+        if (isEmpty()) {
             head = tail = baru;
         } else {
             tail.next = baru;
@@ -31,15 +20,31 @@ public class AntrianDoubleLinkedList {
         }
     }
 
-    public Kendaraan dequeue(){
-        if (head == null) return null;
+    public void tampilkanAntrian() {
+        Node temp = head;
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        }else {
+            System.out.println("Daftar Kendaraan dalam Antrian:");
+            while (temp != null) {
+                temp.data.tampilkanInformasi();
+                temp = temp.next;
+            }
+        }
+    }
 
-        Kendaraan k = head.kendaraan;
-        head = head.next;
-        if (head != null) head.prev = null;
-        else tail = null;
-
-        return k;
+    public void layaniKendaraan() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        }
+        if (head == tail) {
+            System.out.println("Kendaraan " + head.data.platNomor + " telah dilayani.");
+            head = tail = null;
+        } else {
+            System.out.println("Kendaraan " + head.data.platNomor + " telah dilayani.");
+            head = head.next;
+            head.prev = null;
+        }
     }
     
 }
