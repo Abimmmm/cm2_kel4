@@ -6,21 +6,19 @@ public class AntrianDoubleLinkedList {
     }
 
     public void tampilkanAntrian(){
-        if (isEmpty()) {
-            System.out.println("Antrian kosong.");
-            return;
-        }
-
-         NodeKendaraan temp = head;
-        System.out.println("-- Daftar Kendaraan dalam Antrian");
-        while (temp != null) {
-            System.out.println("Plat Nomor : " + temp.kendaraan.platNomor);
-            System.out.println("Jenis      : " + temp.kendaraan.jenisKendaraan);
-            System.out.println("Merk       : " + temp.kendaraan.merk);
-            System.out.println("-----------------------------");
-            temp = temp.next;
-        }
+    if (isEmpty()) {
+        System.out.println("Antrian kosong.");
+        return;
     }
+
+    NodeKendaraan temp = head;
+    System.out.println("-- Daftar Kendaraan dalam Antrian");
+    while (temp != null) {
+        temp.kendaraan.tampilkanInformasi();
+        System.out.println("-----------------------------");
+        temp = temp.next;
+    }
+}
 
    public void enqueue(Kendaraan k){
         NodeKendaraan baru = new NodeKendaraan(k);
